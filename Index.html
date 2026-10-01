@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vocue — Train to your music. Hear every cue.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000000;
+    --fg: #ffffff;
+    --muted: #8a8a8e;
+    --line: #2a2a2e;
+    --accent: #4e7ffb;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #0a0a0c;
+      --fg: #ffffff;
+      --muted: #9a9aa0;
+      --line: #2a2a2e;
+      --accent: #4e7ffb;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #000000; --fg: #ffffff; --muted: #8a8a8e; --line: #2a2a2e; --accent: #4e7ffb;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    display: flex;
+    justify-content: center;
+    padding: 32px 24px 0;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.12em;
+  }
+  .brand .dot {
+    width: 16px; height: 16px;
+    border: 1.5px solid var(--fg);
+    border-radius: 50%;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 64px 24px 40px;
+  }
+  .ring {
+    width: 200px; height: 200px;
+    margin: 0 auto 40px;
+    border: 1.5px solid var(--fg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: 0.06em;
+  }
+  h1 {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 7vw, 44px);
+    line-height: 1.15;
+    margin: 0 0 16px;
+    max-width: 15ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sub {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 38ch;
+    margin: 0 auto 36px;
+  }
+  .cta {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 16px 32px;
+    border-radius: 999px;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+  .cta:hover { opacity: 0.9; }
+  .cta:active { transform: scale(0.98); }
+  .cta:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  .hint {
+    display: block;
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .flow {
+    padding: 56px 24px;
+    border-top: 1px solid var(--line);
+  }
+  .flow-item {
+    display: flex;
+    gap: 20px;
+    padding: 22px 0;
+  }
+  .flow-item + .flow-item { border-top: 1px solid var(--line); }
+  .flow-mark {
+    flex: none;
+    width: 28px; height: 28px;
+    border: 1px solid var(--muted);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: "Space Grotesk", sans-serif;
+  }
+  .flow-text h3 {
+    margin: 2px 0 6px;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .flow-text p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.55;
+    max-width: 42ch;
+  }
+
+  .features {
+    padding: 8px 24px 56px;
+  }
+  .features ul {
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .features li {
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+    font-size: 15px;
+    color: var(--fg);
+  }
+  .features li:last-child { border-bottom: 1px solid var(--line); }
+  .features li span {
+    display: block;
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  footer {
+    padding: 40px 24px calc(48px + env(safe-area-inset-bottom, 0px));
+    text-align: center;
+  }
+  footer .cta { margin-bottom: 20px; }
+  .links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 14px;
+  }
+  .links a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .links a:hover { color: var(--fg); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand"><span class="dot"></span>VOCUE</div>
+</header>
+
+<section class="hero wrap">
+  <div class="ring">CUE</div>
+  <h1>Train to your music. Hear every cue.</h1>
+  <p class="sub">Vocue lets your coach speak to you mid-set without killing your playlist. Press to talk, music ducks, then comes right back.</p>
+  <a class="cta" href="https://testflight.apple.com/join/EWCddVzq">Join the beta on TestFlight</a>
+  <span class="hint">iOS only, for now</span>
+</section>
+
+<section class="flow wrap">
+  <div class="flow-item">
+    <div class="flow-mark">1</div>
+    <div class="flow-text">
+      <h3>Pair up</h3>
+      <p>Coach shares a code, athlete enters it. Takes a few seconds.</p>
+    </div>
+  </div>
+  <div class="flow-item">
+    <div class="flow-mark">2</div>
+    <div class="flow-text">
+      <h3>Play your music</h3>
+      <p>Spotify, Apple Music, whatever gets you through the set. Keep it running.</p>
+    </div>
+  </div>
+  <div class="flow-item">
+    <div class="flow-mark">3</div>
+    <div class="flow-text">
+      <h3>Coach cues you</h3>
+      <p>They hold one button. Your music dips, their voice comes through clearly, then it's back to full volume.</p>
+    </div>
+  </div>
+</section>
+
+<section class="features wrap">
+  <ul>
+    <li>Live voice cueing, no interruption
+      <span>No pausing, no switching apps, no missed instructions.</span>
+    </li>
+    <li>Works with your existing music app
+      <span>Nothing to import or migrate. Keep your playlists exactly as they are.</span>
+    </li>
+    <li>Built for real gym conditions
+      <span>Loud rooms, AirPods, spotty Wi-Fi — designed to hold up.</span>
+    </li>
+  </ul>
+</section>
+
+<footer class="wrap">
+  <a class="cta" href="https://testflight.apple.com/join/EWCddVzq">Join the beta</a>
+  <div class="links">
+    <a href="https://instagram.com/vocueapp">Instagram</a>
+    <a href="https://udaysagars.github.io/Vocue-privacy/">Privacy</a>
+  </div>
+</footer>
+
+</body>
+</html>
